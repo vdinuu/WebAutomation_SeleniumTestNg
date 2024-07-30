@@ -24,9 +24,12 @@ public class RegisterUserTest extends TestBase {
         Assert.assertEquals(loginPage.getLoginPageTitle(), "Login - Practice Software Testing - Toolshop - v5.0");
         registrationPage = loginPage.navigateToSignUpPage();
         Assert.assertEquals(registrationPage.getRegistrationPageTitle(), "Register - Practice Software Testing - Toolshop - v5.0");
-        registrationPage.fillRegistrationForm(TestBase.testDataMap.get("first_name"), TestBase.testDataMap.get("last_name"),
-                TestBase.testDataMap.get("dob"), TestBase.testDataMap.get("address"), TestBase.testDataMap.get("postcode"),
-                TestBase.testDataMap.get("city"), TestBase.testDataMap.get("state"), TestBase.testDataMap.get("country"),
+        registrationPage.fillRegistrationForm(TestBase.testDataMap.get("first_name"),
+                TestBase.testDataMap.get("last_name"),
+                TestBase.testDataMap.get("dob"), TestBase.testDataMap.get("address"),
+                TestBase.testDataMap.get("postcode"),
+                TestBase.testDataMap.get("city"), TestBase.testDataMap.get("state"),
+                TestBase.testDataMap.get("country"),
                 TestBase.testDataMap.get("email"), TestBase.testDataMap.get("password"));
     }
 }
