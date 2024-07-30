@@ -1,10 +1,9 @@
-package com.automation.util;
+package utils;
+
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
-import java.io.IOException;
 
 public class Listener implements ITestListener {
     @Override
@@ -20,11 +19,11 @@ public class Listener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         System.out.println("Exception occurred: " + result.getThrowable());
-        try {
-            TestUtil.takeScreenshotAtEndOfTest();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            TestUtil.takeScreenshotAtEndOfTest();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
