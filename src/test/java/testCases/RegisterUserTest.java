@@ -4,13 +4,15 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.RegistrationPage;
+import utils.Listener;
 
 import static utils.DriverFactory.getDriver;
-
+@Listeners(Listener.class)
 public class RegisterUserTest extends TestBase {
     HomePage homePage;
     LoginPage loginPage;
