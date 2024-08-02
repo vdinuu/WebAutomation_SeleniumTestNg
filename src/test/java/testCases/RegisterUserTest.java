@@ -33,5 +33,6 @@ public class RegisterUserTest extends TestBase {
                 TestBase.testDataMap.get("city"), TestBase.testDataMap.get("state"),
                 TestBase.testDataMap.get("country"),
                 TestBase.testDataMap.get("email"), TestBase.testDataMap.get("password"));
+        Assert.assertEquals(registrationPage.getErrorCount(), 0, "Error is displayed");
     }
 }

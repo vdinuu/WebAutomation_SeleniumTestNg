@@ -20,6 +20,7 @@ public class RegistrationPage {
     private By textBox_Email = By.id("email");
     private By textBox_Password = By.id("password");
     private By btn_Register = By.cssSelector("button.btnSubmit");
+    private By mandatory_alert = By.cssSelector("div.alert-danger");
     WebDriver driver;
     public RegistrationPage(WebDriver driver){
         this.driver = driver;
@@ -93,6 +94,9 @@ public class RegistrationPage {
         enterEmail(emailId);
         enterPassword(password);
         clickRegisterButton();
-        sleep(10);
+    }
+    public int getErrorCount(){
+        waitUntilNumberElementsMoreThanSize(mandatory_alert, 0);
+        return getSizeOfElements(mandatory_alert);
     }
 }
