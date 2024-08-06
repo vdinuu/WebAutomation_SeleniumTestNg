@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.Set;
 
 import static utils.DriverFactory.getDriver;
@@ -100,7 +101,6 @@ public class SeleniumActions  {
             }
         }
     }
-
     public static void waitUntilAttributeToBe(By identifier, String attributeName, String attributeValue) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Constants.MEDIUM_WAIT_SECONDS));
         wait.until(ExpectedConditions.attributeToBe(identifier, attributeName, attributeValue));
@@ -143,6 +143,29 @@ public class SeleniumActions  {
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("arguments[0].setAttribute(arguments[1],arguments[2])", findElement(locator),
                 attributeName, attributeValue);
+    }
+
+    public static int getSizeOfElements(By identifier) {
+        return getDriver().findElements(identifier).size();
+    }
+    public static void waitUntilNumberElementsMoreThanSize(By identifier, int size) {
+        try {
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Constants.MEDIUM_WAIT_SECONDS));
+            wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(identifier, size));
+        } catch (Exception e) {
+        }
+    }
+    public static List<WebElement> findElements(By identifier){
+        waitUntilNumberElementsMoreThanSize(identifier, 0);
+        return getDriver().findElements(identifier);
+    }
+    public static void enterTextUsingActions(String text){
+        Actions actions = new Actions(getDriver());
+        actions.sendKeys(text).build().perform();
+    }
+    public static void enterTextUsingActions(By locator, String text){
+        Actions actions = new Actions(getDriver());
+        actions.sendKeys(findElement(locator), text).build().perform();
     }
 
 }

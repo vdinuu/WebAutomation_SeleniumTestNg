@@ -4,6 +4,8 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.CommonUtils;
+import utils.Constants;
+import utils.ExcelUtil;
 
 import static utils.SeleniumActions.*;
 
@@ -20,6 +22,7 @@ public class RegistrationPage {
     private By textBox_Email = By.id("email");
     private By textBox_Password = By.id("password");
     private By btn_Register = By.cssSelector("button.btnSubmit");
+    private By mandatory_alert = By.cssSelector("div.alert-danger");
     WebDriver driver;
     public RegistrationPage(WebDriver driver){
         this.driver = driver;
@@ -38,8 +41,12 @@ public class RegistrationPage {
         enterText(textBox_LastName, last_Name);
     }
     @Step("Enter Date of Birth")
-    public void enterDateOfBirth(String dob){
-        setAttribute(textBox_DateOfBirth, "value", dob);
+    public void enterDateOfBirth(String month, String day, String year){
+        sleep(1);
+        clickElement(textBox_DateOfBirth);
+        enterTextUsingActions(textBox_DateOfBirth, month);
+        enterTextUsingActions(day);
+        enterTextUsingActions(year);
     }
     @Step("Enter address")
     public void enterAddress(String address){
@@ -68,6 +75,10 @@ public class RegistrationPage {
     @Step("Enter email id")
     public void enterEmail(String emailId){
         enterText(textBox_Email, emailId);
+        ExcelUtil.updateExcelData(Constants.EXCEL_DATA_FILE_PATH, Constants.SHEET_NAME,
+                "registerNewUserFormValidation", 11, emailId);
+        ExcelUtil.updateExcelData(Constants.EXCEL_DATA_FILE_PATH, Constants.SHEET_NAME,
+                "loginTest", 11, emailId);
     }
     @Step("Enter password")
     public void enterPassword(String password){
@@ -83,7 +94,7 @@ public class RegistrationPage {
                                      String emailId, String password){
         enterFirstName(firstName);
         enterLastName(lastName);
-        enterDateOfBirth(dob);
+//        enterDateOfBirth(dob);
         enterAddress(address);
         enterPostCode(postcode);
         enterCity(city);
@@ -93,6 +104,9 @@ public class RegistrationPage {
         enterEmail(emailId);
         enterPassword(password);
         clickRegisterButton();
-        sleep(10);
+    }
+    public int getErrorCount(){
+        waitUntilNumberElementsMoreThanSize(mandatory_alert, 0);
+        return getSizeOfElements(mandatory_alert);
     }
 }

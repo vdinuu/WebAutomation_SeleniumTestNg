@@ -4,10 +4,13 @@
     <listeners>
         <listener class-name="utils.Listener"></listener>
     </listeners>
-    <test verbose="2" preserve-order="true" name="C:/Data Drive/Automation/SeleniumAutomation">
-        <classes>
-            <class name="testCases.RegisterUserTest">
-            </class>
-        </classes>
+    <test verbose="2" preserve-order="true" name="Automation Suite">
+        <packages>
+            <package name="testCases"></package>
+        </packages>
+<!--        <classes>-->
+<!--            <class name="testCases.RegisterUserTest">-->
+<!--            </class>-->
+<!--        </classes>-->
     </test>
 </suite>

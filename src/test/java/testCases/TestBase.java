@@ -23,7 +23,7 @@ public class TestBase {
     public TestBase() {
         prop = new Properties();
         try {
-            FileInputStream inputStream = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/config/config.properties");
+            FileInputStream inputStream = new FileInputStream(System.getProperty("user.dir") + "/src/test/resources/config.properties");
             prop.load(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
