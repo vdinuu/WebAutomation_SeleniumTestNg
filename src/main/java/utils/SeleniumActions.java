@@ -149,12 +149,23 @@ public class SeleniumActions  {
         return getDriver().findElements(identifier).size();
     }
     public static void waitUntilNumberElementsMoreThanSize(By identifier, int size) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Constants.MEDIUM_WAIT_SECONDS));
-        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(identifier, size));
+        try {
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Constants.MEDIUM_WAIT_SECONDS));
+            wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(identifier, size));
+        } catch (Exception e) {
+        }
     }
     public static List<WebElement> findElements(By identifier){
         waitUntilNumberElementsMoreThanSize(identifier, 0);
         return getDriver().findElements(identifier);
+    }
+    public static void enterTextUsingActions(String text){
+        Actions actions = new Actions(getDriver());
+        actions.sendKeys(text).build().perform();
+    }
+    public static void enterTextUsingActions(By locator, String text){
+        Actions actions = new Actions(getDriver());
+        actions.sendKeys(findElement(locator), text).build().perform();
     }
 
 }

@@ -9,8 +9,11 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.RegistrationPage;
+import utils.CommonUtils;
 import utils.Listener;
 
+import static utils.CommonUtils.generateEmailId;
+import static utils.CommonUtils.getRandomNumber;
 import static utils.DriverFactory.getDriver;
 @Listeners(Listener.class)
 public class RegisterUserTest extends TestBase {
@@ -26,13 +29,20 @@ public class RegisterUserTest extends TestBase {
         Assert.assertEquals(loginPage.getLoginPageTitle(), "Login - Practice Software Testing - Toolshop - v5.0");
         registrationPage = loginPage.navigateToSignUpPage();
         Assert.assertEquals(registrationPage.getRegistrationPageTitle(), "Register - Practice Software Testing - Toolshop - v5.0");
-        registrationPage.fillRegistrationForm(TestBase.testDataMap.get("first_name"),
-                TestBase.testDataMap.get("last_name"),
-                TestBase.testDataMap.get("dob"), TestBase.testDataMap.get("address"),
-                TestBase.testDataMap.get("postcode"),
-                TestBase.testDataMap.get("city"), TestBase.testDataMap.get("state"),
-                TestBase.testDataMap.get("country"),
-                TestBase.testDataMap.get("email"), TestBase.testDataMap.get("password"));
+        registrationPage.enterFirstName(testDataMap.get("first_name"));
+        registrationPage.enterLastName(testDataMap.get("last_name"));
+        registrationPage.enterDateOfBirth(testDataMap.get("month"),
+                testDataMap.get("day"), testDataMap.get("year"));
+        registrationPage.enterAddress(testDataMap.get("address"));
+        registrationPage.enterPostCode(testDataMap.get("postcode"));
+        registrationPage.enterCity(testDataMap.get("city"));
+        registrationPage.enterState(testDataMap.get("state"));
+        registrationPage.selectCountry(testDataMap.get("country"));
+        registrationPage.enterPhone(getRandomNumber(10));
+        String email = generateEmailId();
+        registrationPage.enterEmail(email);
+        registrationPage.enterPassword(testDataMap.get("password"));
+        registrationPage.clickRegisterButton();
         Assert.assertEquals(registrationPage.getErrorCount(), 0, "Error is displayed");
     }
 }
