@@ -20,7 +20,7 @@ public class RegistrationPage {
     private By drpDown_Country = By.id("country");
     private By textBox_phone = By.id("phone");
     private By textBox_Email = By.id("email");
-    private By textBox_Password = By.id("password");
+    private By textBox_Password = By.xpath("//input[@id='password']");
     private By btn_Register = By.cssSelector("button.btnSubmit");
     private By mandatory_alert = By.cssSelector("div.alert-danger");
     WebDriver driver;
@@ -82,6 +82,7 @@ public class RegistrationPage {
     }
     @Step("Enter password")
     public void enterPassword(String password){
+        clickElement(textBox_Password);
         enterText(textBox_Password, password);
     }
     @Step("Click Register button")
