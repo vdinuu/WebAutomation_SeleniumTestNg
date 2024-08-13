@@ -2,6 +2,7 @@ package testCases;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.asserts.SoftAssert;
 import utils.DriverFactory;
 import utils.ExcelUtil;
 
@@ -19,6 +20,8 @@ public class TestBase {
     public static Properties prop;
     public static Map<String, String> testDataMap = new HashMap<>();
     public DriverFactory driverFactory;
+    private SoftAssert softAssert;
+    private ThreadLocal threadLocal = new ThreadLocal<>();
 
     public TestBase() {
         prop = new Properties();
@@ -43,6 +46,8 @@ public class TestBase {
         if(data.containsKey(name)){
             testDataMap = data.get(name);
         }
+        softAssert = new SoftAssert();
+        threadLocal.set(softAssert);
     }
 
     @AfterMethod
@@ -50,6 +55,10 @@ public class TestBase {
         if(null != getDriver()){
             getDriver().quit();
         }
+        getSoftAssert().assertAll();
+    }
+    public SoftAssert getSoftAssert(){
+        return (SoftAssert) threadLocal.get();
     }
 
 }

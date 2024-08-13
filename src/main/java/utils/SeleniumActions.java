@@ -1,14 +1,18 @@
 package utils;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
+import io.qameta.allure.Attachment;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -166,6 +170,20 @@ public class SeleniumActions  {
     public static void enterTextUsingActions(By locator, String text){
         Actions actions = new Actions(getDriver());
         actions.sendKeys(findElement(locator), text).build().perform();
+    }
+    public static String getTimeStamp(String dateFormat){
+        return new SimpleDateFormat(dateFormat).format(new Date());
+    }
+    @Attachment
+    public static String captureScreenshot(WebDriver driver, String screenshotName){
+        File source = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        File screenshot = new File("screenshots"+File.separator+screenshotName+getTimeStamp("yyyy_MM_dd_HH_mm_ss")+".png");
+        try {
+            FileUtils.copyFile(source, screenshot);
+            return screenshot.getAbsolutePath();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
