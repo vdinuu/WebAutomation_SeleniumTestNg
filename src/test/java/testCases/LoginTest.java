@@ -17,7 +17,7 @@ import static utils.DriverFactory.getDriver;
 @Listeners(TestAllureReportListener.class)
 public class LoginTest extends TestBase {
     @Feature("User login")
-    @Test(dependsOnMethods = {"testCases.RegisterUserTest.registerNewUserFormValidation"})
+    @Test(dependsOnMethods = {"testCases.RegisterUserTest.registerNewUserFormValidation"}, groups = {"SmokeTest"})
     @Description("Verify user login")
     @Severity(SeverityLevel.CRITICAL)
     public void loginTest() {
@@ -29,7 +29,7 @@ public class LoginTest extends TestBase {
         Assert.assertTrue(myAccountPage.isMyAccountPageDisplayed(), "Login unsuccessful");
     }
     @Feature("User login")
-    @Test
+    @Test(groups = {"SmokeTest"})
     @Description("Verify user login")
     @Severity(SeverityLevel.CRITICAL)
     public void invalidLoginTest() {

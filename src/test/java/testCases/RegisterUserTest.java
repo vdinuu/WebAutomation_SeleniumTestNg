@@ -20,7 +20,7 @@ public class RegisterUserTest extends TestBase {
     @Epic("User registration")
     @Feature("New user registration")
     @Story("Successful user registration")
-    @Test
+    @Test(groups = {"Regression", "SmokeTest"})
     @Description("Verify user registration")
     @Severity(SeverityLevel.CRITICAL)
     public void registerNewUserFormValidation(){
