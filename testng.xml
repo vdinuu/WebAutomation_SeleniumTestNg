@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" parallel="methods" thread-count="2">
+<suite name="All Test Suite" parallel="methods" thread-count="1">
+    <groups>
+        <run>
+            <include name="SmokeTest"/>
+        </run>
+    </groups>
     <listeners>
-        <listener class-name="utils.TestAllureReportListener"></listener>
+        <listener class-name="utils.TestAllureReportListener"/>
     </listeners>
     <test verbose="2" preserve-order="true" name="Automation Suite">
         <packages>
-            <package name="testCases"></package>
+            <package name="testCases"/>
         </packages>
-<!--        <classes>-->
-<!--            <class name="testCases.RegisterUserTest">-->
-<!--            </class>-->
-<!--        </classes>-->
     </test>
 </suite>

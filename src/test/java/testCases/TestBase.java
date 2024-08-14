@@ -34,10 +34,12 @@ public class TestBase {
         }
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setup(Method method){
         driverFactory = new DriverFactory();
-        driverFactory.initDriver(prop.getProperty("browser"), prop.getProperty("url") );
+//        String headless = System.getProperty("headless")==null ? prop.getProperty("headless") :
+//                System.getProperty("headless");
+        driverFactory.initDriver(prop.getProperty("browser"), prop.getProperty("url"), Boolean.getBoolean("headless") );
         String name = method.getName();
         Map<String, Map<String, String>> data = new HashMap<>();
         try {
@@ -51,7 +53,7 @@ public class TestBase {
         threadLocal.set(softAssert);
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown(){
         if(null != getDriver()){
             getDriver().quit();
