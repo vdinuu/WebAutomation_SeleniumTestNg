@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" parallel="methods" thread-count="1">
+    <groups>
+        <run>
+            <include name="SmokeTest"/>
+        </run>
+    </groups>
+    <listeners>
+        <listener class-name="utils.TestAllureReportListener"/>
+    </listeners>
+    <test verbose="3" preserve-order="true" name="Automation Suite">
+        <parameter name="browser" value="chrome"></parameter>
+        <packages>
+            <package name="testCases"/>
+        </packages>
+    </test>
+    <test verbose="3" preserve-order="true" name="Automation Suite in Firefox">
+        <parameter name="browser" value="firefox"></parameter>
+        <packages>
+            <package name="testCases"/>
+        </packages>
+    </test>
+</suite>

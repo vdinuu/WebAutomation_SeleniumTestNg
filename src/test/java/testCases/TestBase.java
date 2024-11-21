@@ -2,6 +2,7 @@ package testCases;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.asserts.SoftAssert;
 import utils.DriverFactory;
 import utils.ExcelUtil;
@@ -32,12 +33,13 @@ public class TestBase {
         }
     }
 
+    @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true)
-    public void setup(Method method){
+    public void setup(Method method, String browser) {
         driverFactory = new DriverFactory();
 //        String headless = System.getProperty("headless")==null ? prop.getProperty("headless") :
 //                System.getProperty("headless");
-        driverFactory.initDriver(prop.getProperty("browser"), prop.getProperty("executionEnv"),
+        driverFactory.initDriver(browser, prop.getProperty("executionEnv"),
                 Boolean.getBoolean("headless"), prop.getProperty("url"));
         String name = method.getName();
         Map<String, Map<String, String>> data = new HashMap<>();
@@ -45,7 +47,7 @@ public class TestBase {
             data = ExcelUtil.getExcelData("src/test/resources/testData/TestData.xlsx", "DataSheet");
         } catch (IOException ignored) {
         }
-        if(data.containsKey(name)){
+        if (data.containsKey(name)) {
             testDataMap = data.get(name);
         }
         SoftAssert softAssert = new SoftAssert();
@@ -53,13 +55,14 @@ public class TestBase {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown(){
-        if(null != getDriver()){
+    public void tearDown() {
+        if (null != getDriver()) {
             getDriver().quit();
         }
         getSoftAssert().assertAll();
     }
-    public SoftAssert getSoftAssert(){
+
+    public SoftAssert getSoftAssert() {
         return (SoftAssert) threadLocal.get();
     }
 
