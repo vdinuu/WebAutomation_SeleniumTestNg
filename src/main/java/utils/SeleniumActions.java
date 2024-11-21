@@ -140,7 +140,7 @@ public class SeleniumActions  {
     public static void sleep(int seconds){
         try {
             Thread.sleep(seconds*1000);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException ignored) {
         }
     }
     public static void setAttribute(By locator, String attributeName, String attributeValue){
@@ -156,7 +156,7 @@ public class SeleniumActions  {
         try {
             WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Constants.MEDIUM_WAIT_SECONDS));
             wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(identifier, size));
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
     public static List<WebElement> findElements(By identifier){

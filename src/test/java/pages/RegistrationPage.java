@@ -4,26 +4,25 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import page_action_handler.Register;
-import utils.CommonUtils;
 import utils.Constants;
 import utils.ExcelUtil;
 
 import static utils.SeleniumActions.*;
 
 public class RegistrationPage {
-    private By textBox_FirstName = By.id("first_name");
-    private By textBox_LastName = By.id("last_name");
-    private By textBox_DateOfBirth = By.id("dob");
-    private By textBox_Address = By.id("address");
-    private By textBox_PostCode = By.id("postcode");
-    private By textBox_City = By.id("city");
-    private By textBox_State = By.id("state");
-    private By drpDown_Country = By.id("country");
-    private By textBox_phone = By.id("phone");
-    private By textBox_Email = By.id("email");
-    private By textBox_Password = By.xpath("//input[@id='password']");
-    private By btn_Register = By.cssSelector("button.btnSubmit");
-    private By mandatory_alert = By.cssSelector("div.alert-danger");
+    private final By textBox_FirstName = By.id("first_name");
+    private final By textBox_LastName = By.id("last_name");
+    private final By textBox_DateOfBirth = By.id("dob");
+    private final By textBox_Address = By.id("address");
+    private final By textBox_PostCode = By.id("postcode");
+    private final By textBox_City = By.id("city");
+    private final By textBox_State = By.id("state");
+    private final By drpDown_Country = By.id("country");
+    private final By textBox_phone = By.id("phone");
+    private final By textBox_Email = By.id("email");
+    private final By textBox_Password = By.xpath("//input[@id='password']");
+    private final By btn_Register = By.cssSelector("button.btnSubmit");
+    private final By mandatory_alert = By.cssSelector("div.alert-danger");
     WebDriver driver;
     public RegistrationPage(WebDriver driver){
         this.driver = driver;

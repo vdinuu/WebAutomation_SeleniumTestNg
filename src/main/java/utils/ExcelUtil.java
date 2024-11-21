@@ -7,7 +7,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
@@ -21,9 +20,8 @@ public class ExcelUtil {
         Workbook workbook = new XSSFWorkbook(inputStream);
         Sheet sheet = workbook.getSheet(sheetName);
         Row row = sheet.getRow(0);
-        Iterator<Cell> cellIterator = row.iterator();
-        while (cellIterator.hasNext()) {
-            columnHeader.add(cellIterator.next().getStringCellValue());
+        for (Cell value : row) {
+            columnHeader.add(value.getStringCellValue());
         }
         int rowCount = sheet.getLastRowNum();
         int columnCount = row.getLastCellNum();
@@ -32,11 +30,10 @@ public class ExcelUtil {
             Row row1 = sheet.getRow(i);
             rowDataMap = new HashMap<>();
             for (int j = 0; j < columnCount; j++) {
+                Cell cell = row1.getCell(j);
                 if (j == 0) {
-                    Cell cell = row1.getCell(j);
                     testCaseName = cell.getStringCellValue().trim();
                 } else {
-                    Cell cell = row1.getCell(j);
                     rowDataMap.put(columnHeader.get(j), cell.getStringCellValue().trim());
                 }
             }

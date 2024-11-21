@@ -14,11 +14,11 @@ public class LoginPage {
         this.driver = driver;
     }
 
-    private By textBox_EmailId = By.id("email");
-    private By textBox_Password = By.xpath("//input[@id='password']");
-    private By btn_Login = By.xpath("//input[@class='btnSubmit']");
-    private By link_Register = By.xpath("//a[contains(@href, 'register')]");
-    private By header_Login = By.xpath("//h3[contains(text(), \"Login\")]");
+    private final By textBox_EmailId = By.id("email");
+    private final By textBox_Password = By.xpath("//input[@id='password']");
+    private final By btn_Login = By.xpath("//input[@class='btnSubmit']");
+    private final By link_Register = By.xpath("//a[contains(@href, 'register')]");
+    private final By header_Login = By.xpath("//h3[contains(text(), \"Login\")]");
 
     @Step("Navigate to Sign Up page")
     public RegistrationPage navigateToSignUpPage(){
