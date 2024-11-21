@@ -18,12 +18,12 @@ public class CommonUtils {
 
     public static String getRandomAlphaNumeric(int size, boolean isLower){
         String alphaString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"+"1234567890";
-        StringBuffer sb = new StringBuffer(size);
+        StringBuffer stringBuffer = new StringBuffer(size);
         for(int y=0; y<size; y++){
             int index = (int) (alphaString.length()*Math.random());
-            sb.append(alphaString.charAt(index));
+            stringBuffer.append(alphaString.charAt(index));
         }
-        return isLower? sb.toString().toLowerCase(): sb.toString().toUpperCase();
+        return isLower? stringBuffer.toString().toLowerCase(): stringBuffer.toString().toUpperCase();
     }
 
     public static String generateEmailId(){

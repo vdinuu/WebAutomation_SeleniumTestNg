@@ -12,10 +12,10 @@ public class HomePage {
     public HomePage(WebDriver driver){
         this.driver = driver;
     }
-    private By link_SignIn = By.xpath("//a[contains(@href, 'login')]");
+    private final By link_SignIn = By.xpath("//a[contains(@href, 'login')]");
     @Step("Navigate to Login In Page")
     public LoginPage navigateToLogInPage(){
         clickElement(link_SignIn);
-        return new LoginPage(driver);
+        return new LoginPage(this.driver);
     }
 }

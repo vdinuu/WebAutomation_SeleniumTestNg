@@ -3,7 +3,6 @@ package utils;
 
 import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
-import org.apache.logging.log4j.core.appender.rolling.FileExtension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -13,10 +12,6 @@ import org.testng.ITestResult;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import static utils.DriverFactory.getDriver;
 
@@ -50,20 +45,12 @@ public class TestAllureReportListener implements ITestListener {
         if(driver != null){
             Logs.info("Capturing screenshot for "+getTestMethodName(result));
             String path = SeleniumActions.captureScreenshot(driver, getTestMethodName(result));
-//            byte[] screenshot = saveFailureScreenshot(driver);
-//            Allure.getLifecycle().addAttachment(getTestMethodName(result), "image/png", ".png", screenshot);
             try {
                 Allure.attachment(getTestMethodName(result), new FileInputStream(path));
                 Allure.getLifecycle().addAttachment(getTestMethodName(result), "image/png", ".png", new FileInputStream(path));
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
-//            String path = SeleniumActions.captureScreenshot(driver, getTestMethodName(result));
-//            try {
-//                Allure.addAttachment(getTestMethodName(result),"image/png", new FileInputStream(path), ".png");
-//            } catch (FileNotFoundException e) {
-//                throw new RuntimeException(e);
-//            }
         }
         saveTextLog(getTestMethodName(result)+ " failed and screenshot captured.");
     }
