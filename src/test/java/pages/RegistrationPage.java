@@ -3,6 +3,7 @@ package pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import page_action_handler.Register;
 import utils.CommonUtils;
 import utils.Constants;
 import utils.ExcelUtil;
@@ -33,78 +34,75 @@ public class RegistrationPage {
         return getPageTitle();
     }
     @Step("Enter first name")
-    public void enterFirstName(String first_Name){
-        enterText(textBox_FirstName, first_Name);
+    public void enterFirstName(Register register){
+        enterText(textBox_FirstName, register.getFirstName());
     }
     @Step("Enter last name")
-    public void enterLastName(String last_Name){
-        enterText(textBox_LastName, last_Name);
+    public void enterLastName(Register register){
+        enterText(textBox_LastName, register.getLastName());
     }
     @Step("Enter Date of Birth")
-    public void enterDateOfBirth(String month, String day, String year){
+    public void enterDateOfBirth(Register register){
         sleep(1);
         clickElement(textBox_DateOfBirth);
-        enterTextUsingActions(textBox_DateOfBirth, month);
-        enterTextUsingActions(day);
-        enterTextUsingActions(year);
+        enterTextUsingActions(textBox_DateOfBirth, register.getMonth());
+        enterTextUsingActions(register.getDay());
+        enterTextUsingActions(register.getYear());
     }
     @Step("Enter address")
-    public void enterAddress(String address){
-        enterText(textBox_Address, address);
+    public void enterAddress(Register register){
+        enterText(textBox_Address, register.getAddress());
     }
     @Step("Enter postcode")
-    public void enterPostCode(String postcode){
-        enterText(textBox_PostCode, postcode);
+    public void enterPostCode(Register register){
+        enterText(textBox_PostCode, register.getPostcode());
     }
     @Step("Enter city")
-    public void enterCity(String city){
-        enterText(textBox_City, city);
+    public void enterCity(Register register){
+        enterText(textBox_City, register.getCity());
     }
     @Step("Enter state")
-    public void enterState(String state){
-        enterText(textBox_State, state);
+    public void enterState(Register register){
+        enterText(textBox_State, register.getState());
     }
     @Step("Select country")
-    public void selectCountry(String country){
-        selectDropDown(drpDown_Country, country);
+    public void selectCountry(Register register){
+        selectDropDown(drpDown_Country, register.getCountry());
     }
     @Step("Enter phone number")
-    public void enterPhone(String number){
-        enterText(textBox_phone, number);
+    public void enterPhone(Register register){
+        enterText(textBox_phone, register.getPhoneNumber());
     }
     @Step("Enter email id")
-    public void enterEmail(String emailId){
-        enterText(textBox_Email, emailId);
+    public void enterEmail(Register register){
+        enterText(textBox_Email, register.getEmail());
         ExcelUtil.updateExcelData(Constants.EXCEL_DATA_FILE_PATH, Constants.SHEET_NAME,
-                "registerNewUserFormValidation", 11, emailId);
+                "registerNewUserFormValidation", 11, register.getEmail());
         ExcelUtil.updateExcelData(Constants.EXCEL_DATA_FILE_PATH, Constants.SHEET_NAME,
-                "loginTest", 11, emailId);
+                "loginTest", 11, register.getEmail());
     }
     @Step("Enter password")
-    public void enterPassword(String password){
+    public void enterPassword(Register register){
         clickElement(textBox_Password);
-        enterText(textBox_Password, password);
+        enterText(textBox_Password, register.getPassword());
     }
     @Step("Click Register button")
     public void clickRegisterButton(){
         clickElement(btn_Register);
     }
     @Step("Fill details in registration form")
-    public void fillRegistrationForm(String firstName, String lastName, String dob, String address,
-                                     String postcode, String city, String state, String country,
-                                     String emailId, String password){
-        enterFirstName(firstName);
-        enterLastName(lastName);
-//        enterDateOfBirth(dob);
-        enterAddress(address);
-        enterPostCode(postcode);
-        enterCity(city);
-        enterState(state);
-        selectCountry(country);
-        enterPhone(CommonUtils.getRandomNumber(10));
-        enterEmail(emailId);
-        enterPassword(password);
-        clickRegisterButton();
+    public void fillRegistrationForm(Register register){
+        enterFirstName(register);
+        enterLastName(register);
+        enterDateOfBirth(register);
+        enterAddress(register);
+        enterPostCode(register);
+        enterCity(register);
+        enterState(register);
+        selectCountry(register);
+        enterPhone(register);
+        enterEmail(register);
+        enterPassword(register);
     }
     public int getErrorCount(){
         waitUntilNumberElementsMoreThanSize(mandatory_alert, 0);
