@@ -1,19 +1,19 @@
 package page_action_handler;
 
 public class Register {
-    private String firstName;
-    private String lastName;
-    private String month;
-    private String day;
-    private String year;
-    private String address;
-    private String postcode;
-    private String city;
-    private String state;
-    private String country;
-    private String phoneNumber;
-    private String email;
-    private String password;
+    private final String firstName;
+    private final String lastName;
+    private final String month;
+    private final String day;
+    private final String year;
+    private final String address;
+    private final String postcode;
+    private final String city;
+    private final String state;
+    private final String country;
+    private final String phoneNumber;
+    private final String email;
+    private final String password;
 
     public Register(RegisterBuilder registerBuilder) {
         this.firstName = registerBuilder.firstName;
@@ -161,9 +161,11 @@ public class Register {
             this.password = password;
             return this;
         }
+        ThreadLocal<Register> threadLocal = new ThreadLocal<>();
 
         public Register build() {
-            return new Register(this);
+            threadLocal.set(new Register(this));
+            return threadLocal.get();
         }
     }
 }

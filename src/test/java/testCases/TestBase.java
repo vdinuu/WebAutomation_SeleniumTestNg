@@ -4,6 +4,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.asserts.SoftAssert;
+import utils.DataMap;
 import utils.DriverFactory;
 import utils.ExcelUtil;
 
@@ -19,7 +20,7 @@ import static utils.DriverFactory.getDriver;
 public class TestBase {
 
     public static Properties prop;
-    public static Map<String, String> testDataMap = new HashMap<>();
+//    public static Map<String, String> testDataMap = new HashMap<>();
     public DriverFactory driverFactory;
     private ThreadLocal threadLocal = new ThreadLocal<>();
 
@@ -42,13 +43,13 @@ public class TestBase {
         driverFactory.initDriver(browser, prop.getProperty("executionEnv"),
                 Boolean.getBoolean("headless"), prop.getProperty("url"));
         String name = method.getName();
-        Map<String, Map<String, String>> data = new HashMap<>();
+        Map<String, Map<String, Object>> data = new HashMap<>();
         try {
             data = ExcelUtil.getExcelData("src/test/resources/testData/TestData.xlsx", "DataSheet");
         } catch (IOException ignored) {
         }
         if (data.containsKey(name)) {
-            testDataMap = data.get(name);
+            DataMap.testDataMap.set(data.get(name));
         }
         SoftAssert softAssert = new SoftAssert();
         threadLocal.set(softAssert);

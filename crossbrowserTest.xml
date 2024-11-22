@@ -9,13 +9,13 @@
     <listeners>
         <listener class-name="utils.TestAllureReportListener"/>
     </listeners>
-    <test verbose="3" preserve-order="true" name="Automation Suite">
+    <test verbose="3" preserve-order="true" thread-count="4" parallel="methods" name="Automation Suite">
         <parameter name="browser" value="chrome"></parameter>
         <packages>
             <package name="testCases"/>
         </packages>
     </test>
-    <test verbose="3" preserve-order="true" name="Automation Suite in Firefox">
+    <test verbose="3" preserve-order="true" thread-count="4" parallel="methods" name="Automation Suite in Firefox">
         <parameter name="browser" value="firefox"></parameter>
         <packages>
             <package name="testCases"/>
