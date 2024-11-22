@@ -8,6 +8,7 @@ import page_action_handler.Register;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.RegistrationPage;
+import utils.DataMap;
 import utils.TestAllureReportListener;
 
 import static utils.CommonUtils.generateEmailId;
@@ -34,19 +35,19 @@ public class RegisterUserTest extends TestBase {
         getSoftAssert().assertEquals(registrationPage.getRegistrationPageTitle(), "Register - Practice Software Testing - Toolshop - v5.0");
         String email = generateEmailId();
         Register register = new Register.RegisterBuilder()
-                .setFirstName(testDataMap.get("first_name"))
-                .setLastName(testDataMap.get("last_name"))
-                .setMonth(testDataMap.get("month"))
-                .setDay(testDataMap.get("day"))
-                .setYear(testDataMap.get("year"))
-                .setAddress(testDataMap.get("address"))
-                .setPostcode(testDataMap.get("postcode"))
-                .setCity(testDataMap.get("city"))
-                .setState(testDataMap.get("state"))
-                .setCountry(testDataMap.get("country"))
+                .setFirstName((String) DataMap.getDataMap().get("first_name"))
+                .setLastName((String) DataMap.getDataMap().get("last_name"))
+                .setMonth((String) DataMap.getDataMap().get("month"))
+                .setDay((String) DataMap.getDataMap().get("day"))
+                .setYear((String) DataMap.getDataMap().get("year"))
+                .setAddress((String) DataMap.getDataMap().get("address"))
+                .setPostcode((String) DataMap.getDataMap().get("postcode"))
+                .setCity((String) DataMap.getDataMap().get("city"))
+                .setState((String) DataMap.getDataMap().get("state"))
+                .setCountry((String) DataMap.getDataMap().get("country"))
                 .setPhoneNumber(getRandomNumber(10))
                 .setEmail(email)
-                .setPassword(testDataMap.get("password"))
+                .setPassword((String) DataMap.getDataMap().get("password"))
                 .build();
         registrationPage.fillRegistrationForm(register);
         registrationPage.clickRegisterButton();

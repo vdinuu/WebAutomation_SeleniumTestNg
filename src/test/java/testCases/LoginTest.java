@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.MyAccountPage;
+import utils.DataMap;
 import utils.TestAllureReportListener;
 
 import static utils.DriverFactory.getDriver;
@@ -24,8 +25,8 @@ public class LoginTest extends TestBase {
         HomePage homePage = new HomePage(getDriver());
         LoginPage loginPage = homePage.navigateToLogInPage();
         getSoftAssert().assertEquals(loginPage.getLoginPageTitle(), "Login - Practice Software Testing - Toolshop - v5.0");
-        MyAccountPage myAccountPage = loginPage.loginToApplication(testDataMap.get("username"),
-                testDataMap.get("password"));
+        MyAccountPage myAccountPage = loginPage.loginToApplication((String) DataMap.getDataMap().get("username"),
+                (String) DataMap.getDataMap().get("password"));
         Assert.assertTrue(myAccountPage.isMyAccountPageDisplayed(), "Login unsuccessful");
     }
     @Feature("User login")
@@ -36,8 +37,8 @@ public class LoginTest extends TestBase {
         HomePage hmePage = new HomePage(getDriver());
         LoginPage logInPage = hmePage.navigateToLogInPage();
         getSoftAssert().assertEquals(logInPage.getLoginPageTitle(), "Login - Practice Software Testing - Toolshop - v5.0");
-        MyAccountPage myAccPage = logInPage.loginToApplication(testDataMap.get("username"),
-                testDataMap.get("password"));
+        MyAccountPage myAccPage = logInPage.loginToApplication((String) DataMap.getDataMap().get("username"),
+                (String) DataMap.getDataMap().get("password"));
         Assert.assertFalse(myAccPage.isMyAccountPageDisplayed(), "Login successful with invalid credentials");
     }
 }
