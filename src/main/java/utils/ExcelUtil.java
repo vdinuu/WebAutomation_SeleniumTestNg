@@ -12,10 +12,10 @@ import java.io.IOException;
 import java.util.*;
 
 public class ExcelUtil {
-    public static Map<String, Map<String, String>> getExcelData(String path, String sheetName) throws IOException {
+    public static Map<String, Map<String, Object>> getExcelData(String path, String sheetName) throws IOException {
         List<String> columnHeader = new ArrayList<>();
-        Map<String, String> rowDataMap;
-        Map<String, Map<String, String>> testDataMap = new HashMap<>();
+        Map<String, Object> rowDataMap;
+        Map<String, Map<String, Object>> testDataMap = new HashMap<>();
         FileInputStream inputStream = new FileInputStream(path);
         Workbook workbook = new XSSFWorkbook(inputStream);
         Sheet sheet = workbook.getSheet(sheetName);
@@ -34,6 +34,11 @@ public class ExcelUtil {
                 if (j == 0) {
                     testCaseName = cell.getStringCellValue().trim();
                 } else {
+                    switch (cell.getCellType()){
+                        case STRING -> rowDataMap.put(columnHeader.get(j), cell.getStringCellValue().trim());
+                        case NUMERIC -> rowDataMap.put(columnHeader.get(j), cell.getNumericCellValue());
+                        case BOOLEAN -> rowDataMap.put(columnHeader.get(j), cell.getBooleanCellValue());
+                    }
                     rowDataMap.put(columnHeader.get(j), cell.getStringCellValue().trim());
                 }
             }
