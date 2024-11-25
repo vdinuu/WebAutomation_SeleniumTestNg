@@ -38,11 +38,6 @@ public class TestBase {
     @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true)
     public void setup(Method method, String browser) {
-//        driverFactory = new DriverFactory();
-//        String headless = System.getProperty("headless")==null ? prop.getProperty("headless") :
-//                System.getProperty("headless");
-//        driverFactory.initDriver(browser, prop.getProperty("executionEnv"),
-//                Boolean.getBoolean("headless"), prop.getProperty("url"));
         initializeDriver(browser, prop.getProperty("url"));
         String name = method.getName();
         Map<String, Map<String, Object>> data = new HashMap<>();
@@ -71,7 +66,8 @@ public class TestBase {
 
     public void initializeDriver(String browser, String url){
         DriverContext driverContext;
-        String executionProperty = prop.getProperty("executionStrategy");
+        String executionProperty = System.getProperty("executionEnv")==null ?
+                prop.getProperty("executionEnv") : System.getProperty("executionEnv");
         switch (executionProperty.toLowerCase()){
             case "local" -> {
                 driverContext = new DriverContext(new LocalExecutionStrategy());
