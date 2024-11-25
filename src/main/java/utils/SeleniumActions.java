@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import static utils.DriverFactory.getDriver;
+import static browserFactory.DriverContext.getDriver;
 
 public class SeleniumActions  {
 

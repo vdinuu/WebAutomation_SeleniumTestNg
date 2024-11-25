@@ -11,9 +11,9 @@ import pages.RegistrationPage;
 import utils.DataMap;
 import utils.TestAllureReportListener;
 
+import static browserFactory.DriverContext.getDriver;
 import static utils.CommonUtils.generateEmailId;
 import static utils.CommonUtils.getRandomNumber;
-import static utils.DriverFactory.getDriver;
 
 @Listeners({TestAllureReportListener.class})
 public class RegisterUserTest extends TestBase {

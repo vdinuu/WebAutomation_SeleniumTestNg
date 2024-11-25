@@ -13,7 +13,8 @@ import org.testng.ITestResult;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import static utils.DriverFactory.getDriver;
+import static browserFactory.DriverContext.getDriver;
+
 
 public class TestAllureReportListener implements ITestListener {
     private static String getTestMethodName(ITestResult result){

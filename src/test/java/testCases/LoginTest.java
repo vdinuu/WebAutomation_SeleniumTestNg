@@ -13,7 +13,8 @@ import pages.MyAccountPage;
 import utils.DataMap;
 import utils.TestAllureReportListener;
 
-import static utils.DriverFactory.getDriver;
+import static browserFactory.DriverContext.getDriver;
+
 
 @Listeners(TestAllureReportListener.class)
 public class LoginTest extends TestBase {
