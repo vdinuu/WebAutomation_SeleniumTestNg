@@ -4,6 +4,11 @@ package utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Utility class for managing test execution logging.
+ * This class provides centralized logging functionality for test automation,
+ * including test case start/end markers and general information logging.
+ **/
 public class Logs {
     private static final Logger log = LoggerFactory.getLogger(Logs.class);
     public static void startTestCase(String testCaseName) {

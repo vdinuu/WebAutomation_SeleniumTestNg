@@ -6,6 +6,9 @@ import java.util.stream.Stream;
 
 public class CommonUtils {
 
+    /**
+     * Generates a random number within a specified size range.
+     */
     public static String getRandomNumber(int size){
         Random random = new Random();
         List<Integer> randomSingleDigits = Stream.generate(() -> random.nextInt(10))
@@ -16,6 +19,7 @@ public class CommonUtils {
         return result.toString();
     }
 
+    /** Generates a random string of alphabets and number (uppercase or lowercase) of a specified size. */
     public static String getRandomAlphaNumeric(int size, boolean isLower){
         String alphaString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"+"1234567890";
         StringBuffer stringBuffer = new StringBuffer(size);
@@ -26,6 +30,7 @@ public class CommonUtils {
         return isLower? stringBuffer.toString().toLowerCase(): stringBuffer.toString().toUpperCase();
     }
 
+    /** Generates a random email address. */
     public static String generateEmailId(){
         return getRandomAlphaNumeric(10, true)+"@gmail.com";
     }

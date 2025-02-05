@@ -8,6 +8,11 @@ import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
 
+/**
+ * Factory class responsible for creating and managing WebDriver instances.
+ * This class implements the Factory pattern to provide browser-specific WebDriver
+ * instances for test automation, supporting both local and remote execution.
+ **/
 public class DriverFactory {
     public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
 

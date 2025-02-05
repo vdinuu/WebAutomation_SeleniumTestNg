@@ -11,6 +11,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * Utility class for reading and manipulating Excel data in test automation.
+ * This class provides methods to read test data from Excel files and convert
+ * it into usable data structures for test execution.
+ **/
 public class ExcelUtil {
     public static Map<String, Map<String, Object>> getExcelData(String path, String sheetName) throws IOException {
         List<String> columnHeader = new ArrayList<>();

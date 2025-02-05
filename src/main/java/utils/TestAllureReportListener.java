@@ -15,6 +15,12 @@ import java.io.FileNotFoundException;
 
 import static utils.DriverFactory.getDriver;
 
+/**
+ * Custom TestNG listener for Allure reporting integration.
+ * This class implements ITestListener to provide detailed test execution reporting
+ * through Allure, including screenshots, logs, and execution details.
+ **/
+
 public class TestAllureReportListener implements ITestListener {
     private static String getTestMethodName(ITestResult result){
         return result.getMethod().getConstructorOrMethod().getName();

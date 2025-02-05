@@ -1,5 +1,14 @@
 package utils;
 
+/**
+ * Contains constant values used throughout the test automation framework.
+ * This class provides centralized storage for configuration values, timeouts,
+ * and file paths used in the automation suite.
+ *
+ * <p>All constants are declared as public static final to ensure they cannot
+ * be modified during runtime and are accessible throughout the application.
+ *
+ */
 public class Constants {
     public static final int MEDIUM_WAIT_SECONDS = 10;
     public static final int LARGE_WAIT_SECONDS = 20;

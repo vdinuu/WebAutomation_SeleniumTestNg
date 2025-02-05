@@ -6,6 +6,13 @@ import org.openqa.selenium.WebDriver;
 
 import static utils.SeleniumActions.*;
 
+/**
+ * Represents the Login Page of the application.
+ * This class contains all the web elements and methods specific to the Login page.
+ * It follows the Page Object Model design pattern to maintain a clean separation
+ * between test code and page specific code.
+ *
+ * */
 public class LoginPage {
 
     WebDriver driver;

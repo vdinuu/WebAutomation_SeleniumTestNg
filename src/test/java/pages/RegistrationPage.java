@@ -9,6 +9,13 @@ import utils.ExcelUtil;
 
 import static utils.SeleniumActions.*;
 
+/**
+ * Represents the Registration Page of the application.
+ * This class contains all the web elements and methods specific to the Registration page.
+ * It follows the Page Object Model design pattern to maintain a clean separation
+ * between test code and page specific code.
+ *
+ * */
 public class RegistrationPage {
     private final By textBox_FirstName = By.id("first_name");
     private final By textBox_LastName = By.id("last_name");

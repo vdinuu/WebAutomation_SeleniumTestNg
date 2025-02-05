@@ -6,6 +6,13 @@ import org.openqa.selenium.WebDriver;
 
 import static utils.SeleniumActions.isElementDisplayed;
 
+/**
+ * Represents the MyAccount Page of the application.
+ * This class contains all the web elements and methods specific to the MyAccount page.
+ * It follows the Page Object Model design pattern to maintain a clean separation
+ * between test code and page specific code.
+ *
+ * */
 public class MyAccountPage {
     WebDriver driver;
     public MyAccountPage(WebDriver driver){
