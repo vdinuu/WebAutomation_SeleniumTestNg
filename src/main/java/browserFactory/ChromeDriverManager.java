@@ -11,6 +11,14 @@ import utils.Constants;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * ChromeDriverManager implements the BrowserManager interface to handle Chrome WebDriver
+ * initialization and configuration. This class is responsible for creating and configuring
+ * Chrome browser instances for both local and remote execution environments.
+ *
+ * @author Dinu Vijayan
+ *
+ * */
 public class ChromeDriverManager implements BrowserManager {
     @Override
     public WebDriver createDriver(String env, boolean headless) {

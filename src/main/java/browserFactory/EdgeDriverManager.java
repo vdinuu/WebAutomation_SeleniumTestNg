@@ -11,6 +11,14 @@ import utils.Constants;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * EdgeDriverManager implements the BrowserManager interface to handle Edge WebDriver
+ * initialization and configuration. This class is responsible for creating and configuring
+ * Edge browser instances for both local and remote execution environments.
+ *
+ * @author Dinu Vijayan
+ *
+ * */
 public class EdgeDriverManager implements BrowserManager{
     @Override
     public WebDriver createDriver(String env, boolean headless) {
